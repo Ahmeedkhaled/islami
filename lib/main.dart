@@ -1,5 +1,6 @@
 import 'package:eslami/home/home_page.dart';
 import 'package:eslami/mytheme.dart';
+import 'package:eslami/home/quran/quran_details.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget{
       initialRoute: HomePage.routeName,
       routes: {
         HomePage.routeName: (context) => HomePage(),
+        QuranDetails.routeName: (context) => QuranDetails(),
       },
       theme: MyTheme.lightMode,
     );

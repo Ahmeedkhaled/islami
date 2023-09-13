@@ -1,10 +1,8 @@
 import 'package:eslami/home/hadeth/hadeth_tab.dart';
 import 'package:eslami/home/quran/quran_tab.dart';
 import 'package:eslami/home/radio/radio_tab.dart';
-import 'package:eslami/mytheme.dart';
+import 'package:eslami/home/sebha/sebha_tab.dart';
 import 'package:flutter/material.dart';
-
-import '../sebha/sebha_tab.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = "home_page";
