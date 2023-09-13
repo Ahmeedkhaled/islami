@@ -1,4 +1,5 @@
 import 'package:eslami/home_page.dart';
+import 'package:eslami/mytheme.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget{
       routes: {
         HomePage.routeName: (context) => HomePage(),
       },
+      theme: MyTheme.lightMode,
     );
   }
 
