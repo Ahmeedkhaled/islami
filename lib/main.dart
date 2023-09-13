@@ -1,15 +1,18 @@
+import 'package:eslami/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main(){
-  runApp();
+  runApp(MyApp());
 }
 class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: ,
-      routes: ,
+      initialRoute: HomePage.routeName,
+      routes: {
+        HomePage.routeName: (context) => HomePage(),
+      },
     );
   }
 
