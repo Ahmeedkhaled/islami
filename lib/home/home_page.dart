@@ -1,5 +1,10 @@
+import 'package:eslami/home/hadeth/hadeth_tab.dart';
+import 'package:eslami/home/quran/quran_tab.dart';
+import 'package:eslami/home/radio/radio_tab.dart';
 import 'package:eslami/mytheme.dart';
 import 'package:flutter/material.dart';
+
+import '../sebha/sebha_tab.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = "home_page";
@@ -44,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                     label: "quran"),
                 BottomNavigationBarItem(
                     icon:
-                        ImageIcon(AssetImage("assets/images/icon_hadeth.png")),
+                    ImageIcon(AssetImage("assets/images/icon_hadeth.png")),
                     label: "hadeth"),
                 BottomNavigationBarItem(
                     icon: ImageIcon(AssetImage("assets/images/icon_sebha.png")),
@@ -55,8 +60,11 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+          body: tabs[currentIndex],
         ),
       ],
     );
   }
+
+  List<Widget> tabs = [QuranTab(), HadethTab(), SebhaTab(), RadioTab()];
 }
