@@ -8,14 +8,18 @@ class SebhaTab extends StatefulWidget {
 class _SebhaTabState extends State<SebhaTab> {
   int counter = 0;
   String name = "";
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Center(child: Image.asset("assets/images/head_sebha_logo.png")),
-        Center(
-            child: InkWell(
+        Stack(
+          children: [
+            Center(child: Image.asset("assets/images/head_sebha_logo.png")),
+            Center(
+                child: Container(
+              margin: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).size.height * 0.09),
+              child: InkWell(
                 onTap: () {
                   counter++;
                   if (counter < 34) {
@@ -30,7 +34,11 @@ class _SebhaTabState extends State<SebhaTab> {
                   }
                   setState(() {});
                 },
-                child: Image.asset("assets/images/body_sebha_logo.png"))),
+                child: Image.asset("assets/images/body_sebha_logo.png"),
+              ),
+            )),
+          ],
+        ),
         Text(
           "عدد التسبيحات",
           style: Theme.of(context).textTheme.titleSmall,
