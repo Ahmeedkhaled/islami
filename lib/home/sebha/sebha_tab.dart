@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class SebhaTab extends StatefulWidget {
@@ -7,7 +9,15 @@ class SebhaTab extends StatefulWidget {
 
 class _SebhaTabState extends State<SebhaTab> {
   int counter = 0;
-  String name = "";
+  String name = "سبحان الله";
+  double _rotation = 0;
+
+  void _onPressed() {
+    setState(() {
+      _rotation = _rotation + (pi / 4 + new Random().nextInt(100));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,8 +29,9 @@ class _SebhaTabState extends State<SebhaTab> {
                 child: Container(
               margin: EdgeInsets.symmetric(
                   vertical: MediaQuery.of(context).size.height * 0.09),
-              child: InkWell(
-                onTap: () {
+                  child: InkWell(
+                    onTap: () {
+                      _rotation;
                   counter++;
                   if (counter < 34) {
                     name = "سبحان الله";
@@ -34,9 +45,14 @@ class _SebhaTabState extends State<SebhaTab> {
                   }
                   setState(() {});
                 },
-                child: Image.asset("assets/images/body_sebha_logo.png"),
+                child: Transform.rotate(
+                  angle: _rotation,
+                  child: Image.asset(
+                    "assets/images/body_sebha_logo.png",
+                  ),
+                ),
               ),
-            )),
+                )),
           ],
         ),
         Text(
