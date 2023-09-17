@@ -30,16 +30,22 @@ class _HadethTabState extends State<HadethTab> {
           color: Theme.of(context).primaryColor,
           thickness: 3,
         ),
-        Expanded(
-          child: ListView.separated(
-              separatorBuilder: (context, index) {
-                return Divider(
+        ahadethList.isEmpty
+            ? Center(
+                child: CircularProgressIndicator(
                   color: Theme.of(context).primaryColor,
-                  thickness: 3,
-                );
-              },
-              itemCount: ahadethList.length,
-              itemBuilder: (context, index) {
+                ),
+              )
+            : Expanded(
+                child: ListView.separated(
+                    separatorBuilder: (context, index) {
+                      return Divider(
+                        color: Theme.of(context).primaryColor,
+                        thickness: 3,
+                      );
+                    },
+                    itemCount: ahadethList.length,
+                    itemBuilder: (context, index) {
                 return ItemHadethName(
                   hadeth: ahadethList[index],
                 );
