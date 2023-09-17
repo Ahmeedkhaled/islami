@@ -2,6 +2,7 @@ import 'package:eslami/home/hadeth/hadeth_tab.dart';
 import 'package:eslami/home/quran/quran_tab.dart';
 import 'package:eslami/home/radio/radio_tab.dart';
 import 'package:eslami/home/sebha/sebha_tab.dart';
+import 'package:eslami/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                     label: AppLocalizations.of(context)!.quran),
                 BottomNavigationBarItem(
                     icon:
-                        ImageIcon(AssetImage("assets/images/icon_hadeth.png")),
+                    ImageIcon(AssetImage("assets/images/icon_hadeth.png")),
                     label: AppLocalizations.of(context)!.hadeth),
                 BottomNavigationBarItem(
                     icon: ImageIcon(AssetImage("assets/images/icon_sebha.png")),
@@ -56,6 +57,10 @@ class _HomePageState extends State<HomePage> {
                 BottomNavigationBarItem(
                     icon: ImageIcon(AssetImage("assets/images/icon_radio.png")),
                     label: AppLocalizations.of(context)!.radio),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.settings),
+                    label: AppLocalizations.of(context)!.settings)
+
               ],
             ),
           ),
@@ -65,5 +70,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  List<Widget> tabs = [QuranTab(), HadethTab(), SebhaTab(), RadioTab()];
+  List<Widget> tabs = [
+    QuranTab(),
+    HadethTab(),
+    SebhaTab(),
+    RadioTab(),
+    Settings()
+  ];
 }

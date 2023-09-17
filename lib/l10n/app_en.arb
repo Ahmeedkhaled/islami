@@ -5,5 +5,12 @@
   "sebha": "Sebha",
   "radio": "Radio",
   "soura_name": "SouraName",
-  "hadeth_name": "HadethName"
+  "hadeth_name": "HadethName",
+  "settings": "Settings",
+  "english": "English",
+  "arabic": "Arabic",
+  "theme": "Theme",
+  "dark": "Dark",
+  "language": "Language",
+  "light": "Light"
 }
