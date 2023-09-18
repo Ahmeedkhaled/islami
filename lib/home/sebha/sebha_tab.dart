@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:eslami/provider/app_config_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SebhaTab extends StatefulWidget {
   @override
@@ -20,18 +22,22 @@ class _SebhaTabState extends State<SebhaTab> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Column(
       children: [
         Stack(
           children: [
-            Center(child: Image.asset("assets/images/head_sebha_logo.png")),
+            Center(
+                child: provider.isDarkMode()!
+                    ? Image.asset("assets/images/head_sebha_dark.png")
+                    : Image.asset("assets/images/head_sebha_logo.png")),
             Center(
                 child: Container(
               margin: EdgeInsets.symmetric(
                   vertical: MediaQuery.of(context).size.height * 0.09),
-                  child: InkWell(
-                    onTap: () {
-                      _rotation;
+              child: InkWell(
+                onTap: () {
+                  _rotation;
                   counter++;
                   if (counter < 34) {
                     name = "سبحان الله";
@@ -43,16 +49,20 @@ class _SebhaTabState extends State<SebhaTab> {
                     counter = 0;
                     name = "سبحان الله";
                   }
-                  setState(() {});
-                },
-                child: Transform.rotate(
+                      setState(() {});
+                    },
+                    child: Transform.rotate(
                   angle: _rotation,
-                  child: Image.asset(
-                    "assets/images/body_sebha_logo.png",
-                  ),
+                  child: provider.isDarkMode()!
+                      ? Image.asset(
+                          "assets/images/body_sebha_dark.png",
+                        )
+                      : Image.asset(
+                          "assets/images/body_sebha_logo.png",
+                        ),
                 ),
               ),
-                )),
+            )),
           ],
         ),
         Text(
@@ -63,7 +73,9 @@ class _SebhaTabState extends State<SebhaTab> {
           width: 69,
           height: 81,
           decoration: BoxDecoration(
-              color: Color(0xffB7935F),
+              color: provider.isDarkMode()!
+                  ? Theme.of(context).primaryColor
+                  : Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(15)),
           child: Center(
               child: Text("$counter",
@@ -75,7 +87,9 @@ class _SebhaTabState extends State<SebhaTab> {
               vertical: MediaQuery.of(context).size.height * 0.02),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: Theme.of(context).primaryColor,
+            color: provider.isDarkMode()!
+                ? Theme.of(context).canvasColor
+                : Theme.of(context).primaryColor,
           ),
           width: 115,
           height: 40,

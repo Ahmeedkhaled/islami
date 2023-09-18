@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../provider/app_config_provider.dart';
 import 'hadeth_details.dart';
 import 'hadeth_tab.dart';
 
@@ -10,6 +12,8 @@ class ItemHadethName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     return InkWell(
       onTap: () {
         Navigator.of(context).pushNamed(
@@ -19,7 +23,9 @@ class ItemHadethName extends StatelessWidget {
       },
       child: Text(
         hadeth.title,
-        style: Theme.of(context).textTheme.titleSmall,
+        style: provider.isDarkMode()!
+            ? Theme.of(context).textTheme.bodySmall
+            : Theme.of(context).textTheme.titleSmall,
         textAlign: TextAlign.center,
       ),
     );

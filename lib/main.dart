@@ -6,6 +6,7 @@ import 'package:eslami/provider/app_config_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
@@ -28,7 +29,19 @@ class MyApp extends StatelessWidget{
       supportedLocales: AppLocalizations.supportedLocales,
       locale: Locale(provider.appLanguage),
       theme: MyTheme.lightMode,
+      darkTheme: MyTheme.darkMode,
+      themeMode: provider.appTheme,
     );
   }
 
+  Future<void> saveData(BuildContext context) async {
+    var provider = Provider.of<AppConfigProvider>(context);
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('language', provider.appLanguage);
+    prefs.setString('theme', provider.appTheme as String);
+
+    String? stringValue = prefs.getString('language');
+    String? intValue = prefs.getString('theme');
+  }
 }

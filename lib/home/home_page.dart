@@ -2,9 +2,11 @@ import 'package:eslami/home/hadeth/hadeth_tab.dart';
 import 'package:eslami/home/quran/quran_tab.dart';
 import 'package:eslami/home/radio/radio_tab.dart';
 import 'package:eslami/home/sebha/sebha_tab.dart';
+import 'package:eslami/provider/app_config_provider.dart';
 import 'package:eslami/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = "home_page";
@@ -18,14 +20,22 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Stack(
       children: [
-        Image.asset(
-          "assets/images/default_bg.png",
-          width: double.infinity,
-          height: double.infinity,
-          fit: BoxFit.fill,
-        ),
+        provider.isDarkMode()!
+            ? Image.asset(
+                "assets/images/dark_bg.png",
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.fill,
+              )
+            : Image.asset(
+                "assets/images/default_bg.png",
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.fill,
+              ),
         Scaffold(
           appBar: AppBar(
             title: Text(
@@ -49,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                     label: AppLocalizations.of(context)!.quran),
                 BottomNavigationBarItem(
                     icon:
-                    ImageIcon(AssetImage("assets/images/icon_hadeth.png")),
+                        ImageIcon(AssetImage("assets/images/icon_hadeth.png")),
                     label: AppLocalizations.of(context)!.hadeth),
                 BottomNavigationBarItem(
                     icon: ImageIcon(AssetImage("assets/images/icon_sebha.png")),
@@ -60,7 +70,6 @@ class _HomePageState extends State<HomePage> {
                 BottomNavigationBarItem(
                     icon: Icon(Icons.settings),
                     label: AppLocalizations.of(context)!.settings)
-
               ],
             ),
           ),

@@ -1,8 +1,11 @@
+import 'package:eslami/provider/app_config_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RadioTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Container(
       margin: EdgeInsets.symmetric(
           vertical: MediaQuery.of(context).size.height * 0.2,
@@ -25,9 +28,10 @@ class RadioTab extends StatelessWidget {
                   IconButton(
                       onPressed: () {},
                       icon: Icon(
-                        Icons.skip_next,
-                        color: Theme.of(context).primaryColor,
-                      )),
+                          Icons.skip_next,
+                          color: provider.isDarkMode()!
+                              ? Theme.of(context).canvasColor
+                              : Theme.of(context).primaryColor)),
                   Container(
                       margin: EdgeInsets.symmetric(
                           horizontal: MediaQuery.of(context).size.width * 0.07),
@@ -35,14 +39,18 @@ class RadioTab extends StatelessWidget {
                           onPressed: () {},
                           icon: Icon(
                             Icons.play_arrow,
-                            color: Theme.of(context).primaryColor,
+                            color: provider.isDarkMode()!
+                                ? Theme.of(context).canvasColor
+                                : Theme.of(context).primaryColor,
                             size: 35,
                           ))),
                   IconButton(
                       onPressed: () {},
                       icon: Icon(
                         Icons.skip_previous,
-                        color: Theme.of(context).primaryColor,
+                        color: provider.isDarkMode()!
+                            ? Theme.of(context).canvasColor
+                            : Theme.of(context).primaryColor,
                       )),
                 ],
               ),

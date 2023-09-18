@@ -1,5 +1,7 @@
 import 'package:eslami/home/quran/quran_details.dart';
+import 'package:eslami/provider/app_config_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ItemSouraName extends StatelessWidget {
   String name;

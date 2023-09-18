@@ -2,6 +2,9 @@ import 'package:eslami/home/hadeth/hadeth_tab.dart';
 import 'package:eslami/home/hadeth/item_hadeth_details.dart';
 import 'package:eslami/mytheme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/app_config_provider.dart';
 
 class HadethDetails extends StatefulWidget {
   static const String routeName = "hadeth_details";
@@ -14,14 +17,22 @@ class _HadethDetailsState extends State<HadethDetails> {
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments as Hadeth;
+    var provider = Provider.of<AppConfigProvider>(context);
 
     return Stack(children: [
-      Image.asset(
-        "assets/images/default_bg.png",
-        width: double.infinity,
-        height: double.infinity,
-        fit: BoxFit.fill,
-      ),
+      provider.isDarkMode()!
+          ? Image.asset(
+              "assets/images/dark_bg.png",
+              width: double.infinity,
+              height: double.infinity,
+              fit: BoxFit.fill,
+            )
+          : Image.asset(
+              "assets/images/default_bg.png",
+              width: double.infinity,
+              height: double.infinity,
+              fit: BoxFit.fill,
+            ),
       Scaffold(
         appBar: AppBar(
           title: Text(
@@ -37,7 +48,9 @@ class _HadethDetailsState extends State<HadethDetails> {
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),
-            color: MyTheme.whiteColor,
+            color: provider.isDarkMode()!
+                ? MyTheme.primaryDark
+                : MyTheme.whiteColor,
           ),
           child: ListView.builder(
               itemCount: args.content.length,
