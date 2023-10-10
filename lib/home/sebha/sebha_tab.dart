@@ -11,14 +11,13 @@ class SebhaTab extends StatefulWidget {
 
 class _SebhaTabState extends State<SebhaTab> {
   int counter = 0;
-  String name = "سبحان الله";
-  double _rotation = 0;
-
-  void _onPressed() {
-    setState(() {
-      _rotation = _rotation + (pi / 4 + new Random().nextInt(100));
-    });
-  }
+  double angle = 0;
+  List<String> names = [
+    "سبحان الله",
+    "الحمدلله",
+    "الله اكبر",
+  ];
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -35,24 +34,12 @@ class _SebhaTabState extends State<SebhaTab> {
                 child: Container(
               margin: EdgeInsets.symmetric(
                   vertical: MediaQuery.of(context).size.height * 0.09),
-              child: InkWell(
+                  child: GestureDetector(
                 onTap: () {
-                  _rotation;
-                  counter++;
-                  if (counter < 34) {
-                    name = "سبحان الله";
-                  } else if (counter < 67) {
-                    name = "الحمدلله";
-                  } else if (counter < 100) {
-                    name = "الله اكبر";
-                  } else if (counter == 100) {
-                    counter = 0;
-                    name = "سبحان الله";
-                  }
-                      setState(() {});
-                    },
-                    child: Transform.rotate(
-                  angle: _rotation,
+                  onTab();
+                },
+                child: Transform.rotate(
+                  angle: angle,
                   child: provider.isDarkMode()!
                       ? Image.asset(
                           "assets/images/body_sebha_dark.png",
@@ -94,12 +81,24 @@ class _SebhaTabState extends State<SebhaTab> {
           width: 115,
           height: 40,
           child: Text(
-            "$name",
+            names[index],
             style: Theme.of(context).textTheme.bodyMedium,
             textAlign: TextAlign.center,
           ),
         )
       ],
     );
+  }
+
+  void onTab() {
+    counter++;
+    if (counter % 33 == 0) {
+      index++;
+    }
+    if (index == names.length) {
+      index = 0;
+    }
+    angle++;
+    setState(() {});
   }
 }

@@ -14,9 +14,12 @@ void main() {
       child: MyApp()));
 }
 class MyApp extends StatelessWidget{
+  late AppConfigProvider provider;
+
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<AppConfigProvider>(context);
+    provider = Provider.of<AppConfigProvider>(context);
+    saveData();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: HomePage.routeName,
@@ -34,14 +37,17 @@ class MyApp extends StatelessWidget{
     );
   }
 
-  Future<void> saveData(BuildContext context) async {
-    var provider = Provider.of<AppConfigProvider>(context);
-
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('language', provider.appLanguage);
-    prefs.setString('theme', provider.appTheme as String);
-
-    String? stringValue = prefs.getString('language');
-    String? intValue = prefs.getString('theme');
+  Future<void> saveData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var language = await prefs.getString("language");
+    if (language != null) {
+      provider.changeLanguage(language);
+    }
+    var isDark = prefs.getString("isDark");
+    if (isDark == "dark") {
+      provider.changeTheme(ThemeMode.dark);
+    } else if (isDark == "light") {
+      provider.changeTheme(ThemeMode.light);
+    }
   }
 }
